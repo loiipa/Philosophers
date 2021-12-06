@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_func.c                                        :+:      :+:    :+:   */
+/*   mutex_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 20:26:25 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 19:49:34 by cjang            ###   ########.fr       */
+/*   Created: 2021/12/06 15:10:43 by cjang             #+#    #+#             */
+/*   Updated: 2021/12/06 16:51:32 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	time_diff(struct timeval *start, struct timeval *end)
+void	mutex_init(t_cond *cond, pthread_mutex_t *fork)
 {
-	double	sec_to_msec;
-	double	usec_to_msec;
+	unsigned int	i;
 
-	sec_to_msec = (end->tv_sec - start->tv_sec) * 1000;
-	usec_to_msec = (end->tv_usec - start->tv_usec) / 1000;
-	return (sec_to_msec + usec_to_msec);
+	i = 0;
+	while (i < cond->num_of_philo)
+	{
+		pthread_mutex_init(&fork[i], NULL);
+		i++;
+	}
+}
+
+void	mutex_destroy(t_cond *cond, pthread_mutex_t *fork)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i <= cond->num_of_philo)
+	{
+		pthread_mutex_destroy(&fork[i]);
+		i++;
+	}
 }

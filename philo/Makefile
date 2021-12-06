@@ -6,17 +6,28 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/05 17:04:02 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/06 16:48:01 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS =
+CFLAGS = -Wall -Wextra -Werror
 PTHREAD = -lpthread
 NAME = philo
 
 all: $(NAME)
-SRCS = philo.c utils.c time_func.c init_func.c philo_func.c monitor_func.c
+SRCS =	philo.c \
+		utils.c \
+		time_func.c \
+		init_func.c \
+		philo_func.c \
+		monitor_func.c \
+		malloc_func.c \
+		print_func.c \
+		free_func.c \
+		pthread_func.c \
+		mutex_func.c
+
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)

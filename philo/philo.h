@@ -6,14 +6,12 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/05 18:06:58 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/06 15:36:42 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-
-# define THREAD_NUM 512
 
 # include <unistd.h>
 # include <stdio.h>
@@ -52,13 +50,30 @@ int			ft_atoi(const char *str);
 long long	time_diff(struct timeval *start, struct timeval *end);
 
 //init_func.c
-int			init_t_cond(t_cond *cond, int argc, char **argv);
-void		init_t_philo(t_philo *philo, int index, pthread_mutex_t *l_fork, \
-												pthread_mutex_t *r_fork);
-void		init_t_philo_2(t_philo *philo, t_cond *cond);
+void		init_t_cond(t_cond *cond, int argc, char **argv);
+void		init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork);
 
-//pthread_func.c
+//monitor_func.c
 void		*ft_mornitor(void *num);
-void		*ft_thread(void *num);
+
+//philo_func.c
+void		*ft_philo_thread(void *num);
+
+// print_func.c
+int			print_return(char *s, int i);
+
+// malloc_func.c
+int			malloc_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f, \
+						int num);
+
+// free_func.c
+void		free_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f);
+
+// mutex_func.c
+void		mutex_init(t_cond *cond, pthread_mutex_t *fork);
+void		mutex_destroy(t_cond *cond, pthread_mutex_t *fork);
+
+// pthread_func.c
+void		pthread_func(t_cond *cond, t_philo *philo, pthread_t *philo_thread);
 
 #endif
