@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:26:25 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 19:49:34 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/07 12:30:08 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 long long	time_diff(struct timeval *start, struct timeval *end)
 {
-	double	sec_to_msec;
-	double	usec_to_msec;
+	long long	sec_to_msec;
+	long long	usec_to_msec;
 
-	sec_to_msec = (end->tv_sec - start->tv_sec) * 1000;
-	usec_to_msec = (end->tv_usec - start->tv_usec) / 1000;
+	sec_to_msec = (end->tv_sec * 1000) - (start->tv_sec * 1000);
+	usec_to_msec = (end->tv_usec / 1000) - (start->tv_usec / 1000);
 	return (sec_to_msec + usec_to_msec);
 }
