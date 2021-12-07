@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/07 12:38:28 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/07 15:21:49 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ static void	time_print(t_philo *philo, char *message, long long ms_time)
 	time_check = (int)time_diff(&philo->cond->start_time, &middle_check);
 	if (philo->cond->fin_flag == 1)
 		return ;
+	pthread_mutex_lock(&philo->cond->print_mutex);
 	printf("%d %d %s\n", time_check, philo->index, message);
-	// if (ms_time > 0)
-	// 	usleep(1000 * ms_time);
-
+	pthread_mutex_unlock(&philo->cond->print_mutex);
 	gettimeofday(&start_check, NULL);
 	if (ms_time > 0)
 	{
@@ -64,8 +63,9 @@ static void	sleep_func(t_philo *philo)
 	philo->sleep_time = middle_check;
 	if (philo->cond->fin_flag == 1)
 		return ;
+	pthread_mutex_lock(&philo->cond->print_mutex);
 	printf("%d %d is sleeping\n", time_check, philo->index);
-	// usleep(1000 * philo->cond->time_to_sleep);
+	pthread_mutex_unlock(&philo->cond->print_mutex);
 	gettimeofday(&start_check, NULL);
 	while (1)
 	{

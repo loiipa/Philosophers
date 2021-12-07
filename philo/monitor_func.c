@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 17:02:48 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 16:50:45 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/07 15:24:58 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	*ft_mornitor(void *p)
 		{
 			philo->cond->fin_flag = 1;
 			time_check = (int)time_diff(&philo->cond->start_time, &t_check);
-			usleep(100);
+			pthread_mutex_lock(&philo->cond->print_mutex);
 			printf("%d %d died\n", time_check, philo->index);
 		}
-		usleep(100);
+		usleep(USLEEP_TIME);
 		if (philo->cond->philo_eat_fin_count == philo->cond->num_of_philo)
 			philo->cond->fin_flag = 1;
 	}
