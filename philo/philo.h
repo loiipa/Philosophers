@@ -6,12 +6,14 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 15:36:42 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/07 12:38:33 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+# define USLEEP_TIME 100
 
 # include <unistd.h>
 # include <stdio.h>
