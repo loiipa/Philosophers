@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:10:43 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 16:51:32 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/07 15:24:15 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	mutex_init(t_cond *cond, pthread_mutex_t *fork)
 		pthread_mutex_init(&fork[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&cond->print_mutex, NULL);
 }
 
 void	mutex_destroy(t_cond *cond, pthread_mutex_t *fork)
@@ -34,4 +35,6 @@ void	mutex_destroy(t_cond *cond, pthread_mutex_t *fork)
 		pthread_mutex_destroy(&fork[i]);
 		i++;
 	}
+	pthread_mutex_unlock(&cond->print_mutex);
+	pthread_mutex_destroy(&cond->print_mutex);
 }

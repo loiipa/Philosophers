@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/07 12:38:33 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/07 15:18:47 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_cond
 	int					fin_flag;
 	unsigned int		philo_eat_fin_count;
 	struct timeval		start_time;
+	pthread_mutex_t		print_mutex;
 }t_cond;
 
 typedef struct s_philo
