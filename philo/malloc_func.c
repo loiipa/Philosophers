@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:34:34 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 14:44:52 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/08 16:39:05 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	malloc_t_philo(t_philo **p, int num)
 
 static int	malloc_pthread_t(pthread_t **p_t, int num)
 {
-	*p_t = (pthread_t *)malloc(sizeof(t_philo) * num * 2);
+	*p_t = (pthread_t *)malloc(sizeof(t_philo) * num);
 	if (!(*p_t))
 		return (1);
 	return (0);
