@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:22:55 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/07 15:19:52 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/08 17:28:34 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork)
 	{
 		philo[i].index = i + 1;
 		philo[i].l_fork = &fork[i];
-		philo[i].r_fork = &fork[(i + 1) % cond->num_of_philo];
+		if (cond->num_of_philo == 1)
+			philo[i].r_fork = NULL;
+		else
+			philo[i].r_fork = &fork[(i + 1) % cond->num_of_philo];
 		philo[i].eat_conut = 0;
 		philo[i].cond = cond;
 		philo[i].sleep_time = cond->start_time;

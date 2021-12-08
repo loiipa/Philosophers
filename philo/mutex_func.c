@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:10:43 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/07 15:24:15 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/08 17:33:01 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	mutex_destroy(t_cond *cond, pthread_mutex_t *fork)
 	unsigned int	i;
 
 	i = 0;
-	while (i <= cond->num_of_philo)
+	while (i < cond->num_of_philo)
 	{
 		pthread_mutex_destroy(&fork[i]);
 		i++;
 	}
-	pthread_mutex_unlock(&cond->print_mutex);
 	pthread_mutex_destroy(&cond->print_mutex);
 }

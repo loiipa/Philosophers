@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/07 15:18:47 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/08 17:15:17 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ long long	time_diff(struct timeval *start, struct timeval *end);
 void		init_t_cond(t_cond *cond, int argc, char **argv);
 void		init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork);
 
-//monitor_func.c
-void		*ft_mornitor(void *num);
-
 //philo_func.c
 void		*ft_philo_thread(void *num);
 
@@ -77,6 +74,10 @@ void		mutex_init(t_cond *cond, pthread_mutex_t *fork);
 void		mutex_destroy(t_cond *cond, pthread_mutex_t *fork);
 
 // pthread_func.c
-void		pthread_func(t_cond *cond, t_philo *philo, pthread_t *philo_thread);
+void		pthread_create_func(t_cond *c, t_philo *p, pthread_t *p_t);
+void		pthread_join_func(t_cond *cond, pthread_t *philo_thread);
+
+// usleep_func.c
+void		usleep_func(t_philo *philo, long long ms_time);
 
 #endif

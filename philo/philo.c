@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:20:15 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 15:34:55 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/08 17:41:45 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ static int	argv_check(int argc, char **argv)
 		if (ft_atoi(argv[i++]) <= 0)
 			return (1);
 	return (0);
+}
+
+static void	ft_monitor(t_cond *cond)
+{
+	while (cond->fin_flag == 0)
+	{
+		usleep(USLEEP_TIME);
+		if (cond->philo_eat_fin_count == cond->num_of_philo)
+			cond->fin_flag = 1;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -39,12 +49,9 @@ int	main(int argc, char **argv)
 		return (print_return("malloc fail", 1));
 	mutex_init(&philo_cond, fork);
 	init_t_philo(&philo_cond, philo, fork);
-	pthread_func(&philo_cond, philo, philo_thread);
+	pthread_create_func(&philo_cond, philo, philo_thread);
+	ft_monitor(&philo_cond);
+	pthread_join_func(&philo_cond, philo_thread);
 	mutex_destroy(&philo_cond, fork);
 	free_func(&philo, &philo_thread, &fork);
 }
-
-//밀리초		1s / 1,000
-//마이크로초	 1s / 1,000,000
-// 총체적으로 밥을 다먹은 철학자, 자는 철학자 등을 모니터하는 상황은 어떻게 만들지?
-// 비정상 종료시 보조 스레드들의 자원 반환은 같이 이루어져야 하는게 아닐까..?
