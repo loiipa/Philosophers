@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/08 17:15:17 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/09 16:30:41 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_philo
 	struct timeval		sleep_time;
 }t_philo;
 
-// philo
+// utils
 int			ft_atoi(const char *str);
 
 // time_func.c
@@ -72,6 +72,7 @@ void		free_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f);
 // mutex_func.c
 void		mutex_init(t_cond *cond, pthread_mutex_t *fork);
 void		mutex_destroy(t_cond *cond, pthread_mutex_t *fork);
+void		*mutex_unlock(pthread_mutex_t *fork);
 
 // pthread_func.c
 void		pthread_create_func(t_cond *c, t_philo *p, pthread_t *p_t);

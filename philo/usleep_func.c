@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:37:31 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/08 17:42:15 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/09 16:24:47 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	usleep_func(t_philo *philo, long long ms_time)
 	{
 		gettimeofday(&middle_check, NULL);
 		time_check = (unsigned int)time_diff(&start_check, &middle_check);
-		if (ms_time <= time_check)
+		if (philo->cond->num_of_philo != 1 && ms_time <= time_check)
 			break ;
 		usleep(USLEEP_TIME);
 		died_check(philo, &middle_check);
