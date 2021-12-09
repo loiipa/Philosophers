@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/08 17:40:21 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/09 16:27:11 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ void	*ft_philo_thread(void *p)
 		if (philo->cond->num_of_philo == 1)
 			usleep_func(philo, philo->cond->time_to_die);
 		if (philo->cond->fin_flag != 0)
-		{
-			pthread_mutex_unlock(philo->l_fork);
-			break ;
-		}
+			return (mutex_unlock(philo->l_fork));
 		pthread_mutex_lock(philo->r_fork);
 		time_print(philo, "has taken a fork", 0);
 		time_print(philo, "is eating", philo->cond->time_to_eat);
