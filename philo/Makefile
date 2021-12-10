@@ -6,7 +6,7 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/07 15:37:55 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/10 13:57:58 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ CFLAGS = -Wall -Wextra -Werror
 PTHREAD = -lpthread
 NAME = philo
 
-all: $(NAME)
 SRCS =	philo.c \
 		utils.c \
 		time_func.c \
@@ -29,6 +28,8 @@ SRCS =	philo.c \
 		mutex_func.c \
 
 OBJS = $(SRCS:.c=.o)
+
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(PTHREAD)
