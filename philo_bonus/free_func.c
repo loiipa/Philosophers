@@ -6,15 +6,14 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:54:23 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/06 15:06:57 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 17:27:30 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	free_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f)
+void	free_func(t_philo **p, pid_t **pid)
 {
 	free(*p);
-	free(*p_t);
-	free(*f);
+	free(*pid);
 }

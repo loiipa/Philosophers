@@ -6,11 +6,11 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:34:34 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/08 16:39:05 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 16:22:41 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static int	malloc_t_philo(t_philo **p, int num)
 {
@@ -20,35 +20,21 @@ static int	malloc_t_philo(t_philo **p, int num)
 	return (0);
 }
 
-static int	malloc_pthread_t(pthread_t **p_t, int num)
+static int	malloc_pid_t(pid_t **pid, int num)
 {
-	*p_t = (pthread_t *)malloc(sizeof(t_philo) * num);
-	if (!(*p_t))
+	*pid = (pid_t *)malloc(sizeof(pid_t) * num);
+	if (!(*pid))
 		return (1);
 	return (0);
 }
 
-static int	malloc_pthread_mutex_t(pthread_mutex_t **f, int num)
-{
-	*f = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * num);
-	if (!(*f))
-		return (1);
-	return (0);
-}
-
-int	malloc_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f, int num)
+int	malloc_func(t_philo **p, pid_t **pid, int num)
 {
 	if (malloc_t_philo(p, num) == 1)
 		return (1);
-	if (malloc_pthread_t(p_t, num) == 1)
+	else if (malloc_pid_t(pid, num) == 1)
 	{
 		free(*p);
-		return (1);
-	}
-	if (malloc_pthread_mutex_t(f, num) == 1)
-	{
-		free(*p);
-		free(*p_t);
 		return (1);
 	}
 	return (0);

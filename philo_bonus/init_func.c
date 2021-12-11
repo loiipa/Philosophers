@@ -6,13 +6,13 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:22:55 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 14:48:37 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 18:19:10 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	init_t_cond(t_cond *cond, int argc, char **argv)
+void	init_t_cond(t_cond *cond, t_sema *sema, int argc, char **argv)
 {
 	cond->num_of_philo = ft_atoi(argv[1]);
 	cond->time_to_die = ft_atoi(argv[2]);
@@ -23,12 +23,14 @@ void	init_t_cond(t_cond *cond, int argc, char **argv)
 	else
 		cond->limit_num_of_eat = -1;
 	cond->fin_flag = 0;
+	cond->died_sem = sema->died_sem;
+	cond->eat_sem = sema->eat_sem;
+	cond->print_sem = sema->print;
 	cond->return_value = 0;
-	cond->philo_eat_fin_count = 0;
 	gettimeofday(&cond->start_time, NULL);
 }
 
-void	init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork)
+void	init_t_philo(t_cond *cond, t_philo *philo, t_sema *sema)
 {
 	unsigned int	i;
 
@@ -36,11 +38,7 @@ void	init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork)
 	while (i < cond->num_of_philo)
 	{
 		philo[i].index = i + 1;
-		philo[i].l_fork = &fork[i];
-		if (cond->num_of_philo == 1)
-			philo[i].r_fork = NULL;
-		else
-			philo[i].r_fork = &fork[(i + 1) % cond->num_of_philo];
+		philo[i].fork = sema->fork;
 		philo[i].eat_conut = 0;
 		philo[i].cond = cond;
 		philo[i].sleep_time = cond->start_time;

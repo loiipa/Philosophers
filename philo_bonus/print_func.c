@@ -6,11 +6,11 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:21:34 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 14:39:50 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 14:58:48 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	print_return(char *s, int i)
 {

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 14:39:59 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 18:23:12 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
-# define USLEEP_TIME 100
+# define USLEEP_TIME 50
 
 # include <unistd.h>
 # include <stdio.h>
@@ -21,6 +21,16 @@
 # include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <semaphore.h>
+# include <signal.h>
+
+typedef struct s_sema
+{
+	sem_t				*died_sem;
+	sem_t				*eat_sem;
+	sem_t				*fork;
+	sem_t				*print;
+}t_sema;
 
 typedef struct s_cond
 {
@@ -29,12 +39,12 @@ typedef struct s_cond
 	unsigned int		time_to_eat;
 	unsigned int		time_to_sleep;
 	int					limit_num_of_eat;
+	sem_t				*died_sem;
+	sem_t				*eat_sem;
+	sem_t				*print_sem;
 	int					fin_flag;
 	int					return_value;
-	unsigned int		pthread_success;
-	unsigned int		philo_eat_fin_count;
 	struct timeval		start_time;
-	pthread_mutex_t		print_mutex;
 }t_cond;
 
 typedef struct s_philo
@@ -42,26 +52,23 @@ typedef struct s_philo
 	unsigned int		index;
 	unsigned int		eat_conut;
 	int					fin_flag;
-	pthread_mutex_t		*l_fork;
-	pthread_mutex_t		*r_fork;
+	sem_t				*fork;
 	t_cond				*cond;
 	struct timeval		sleep_time;
 }t_philo;
 
 int			ft_atoi(const char *str);
 long long	time_diff(struct timeval *start, struct timeval *end);
-void		init_t_cond(t_cond *cond, int argc, char **argv);
-void		init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork);
-void		*ft_philo_thread(void *num);
+void		init_t_cond(t_cond *cond, t_sema *sema, int argc, char **argv);
+void		init_t_philo(t_cond *cond, t_philo *philo, t_sema *sema);
+void		ft_philo_process(t_philo *philo);
 int			print_return(char *s, int i);
-int			malloc_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f, \
-			int num);
-void		free_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f);
-int			mutex_init(t_cond *cond, pthread_mutex_t *fork);
-void		mutex_destroy(t_cond *cond, pthread_mutex_t *fork);
-void		*mutex_unlock(pthread_mutex_t *fork);
-void		pthread_create_func(t_cond *c, t_philo *p, pthread_t *p_t);
-void		pthread_join_func(unsigned int num, t_cond *c, pthread_t *p_t);
+int			malloc_func(t_philo **p, pid_t **pid, int num);
+void		free_func(t_philo **p, pid_t **pid);
 void		usleep_func(t_philo *philo, long long ms_time);
+
+void		process_init(t_cond *c, t_philo *p, pid_t *pid);
+int			init_t_sema(unsigned int num, t_sema *sema);
+void		t_sema_destory_func(t_sema *sema);
 
 #endif

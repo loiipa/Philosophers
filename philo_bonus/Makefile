@@ -6,16 +6,16 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/10 13:57:58 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/11 19:12:37 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 PTHREAD = -lpthread
-NAME = philo
+NAME = philo_bonus
 
-SRCS =	philo.c \
+SRCS =	philo_bonus.c \
 		utils.c \
 		time_func.c \
 		init_func.c \
@@ -24,8 +24,8 @@ SRCS =	philo.c \
 		malloc_func.c \
 		print_func.c \
 		free_func.c \
-		pthread_func.c \
-		mutex_func.c \
+		sem_func.c \
+		process_func.c \
 
 OBJS = $(SRCS:.c=.o)
 
