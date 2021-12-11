@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_func.c                                        :+:      :+:    :+:   */
+/*   process_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 20:26:25 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 14:58:44 by cjang            ###   ########.fr       */
+/*   Created: 2021/12/11 15:21:27 by cjang             #+#    #+#             */
+/*   Updated: 2021/12/11 18:38:14 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-long long	time_diff(struct timeval *start, struct timeval *end)
+void	process_init(t_cond *c, t_philo *p, pid_t *pid)
 {
-	long long	sec_to_msec;
-	long long	usec_to_msec;
+	unsigned int	i;
 
-	sec_to_msec = (end->tv_sec * 1000) - (start->tv_sec * 1000);
-	usec_to_msec = (end->tv_usec / 1000) - (start->tv_usec / 1000);
-	return (sec_to_msec + usec_to_msec);
+	i = 0;
+	while (i < c->num_of_philo)
+	{
+		pid[i] = fork();
+		if (pid[i] == 0)
+		{
+			sem_wait(c->died_sem);
+			sem_wait(c->eat_sem);
+			ft_philo_process(&p[i]);
+			exit(0);
+		}
+		i++;
+	}
 }
