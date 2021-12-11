@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 15:08:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/09 16:29:46 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 14:44:44 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,29 @@ void	pthread_create_func(t_cond *c, t_philo *p, pthread_t *p_t)
 		{
 			printf("pthread_create error\n");
 			c->fin_flag = 1;
+			c->return_value = 1;
+			c->pthread_success = i;
 			return ;
 		}
 		i++;
 	}
+	c->pthread_success = i;
 }
 
-void	pthread_join_func(t_cond *cond, pthread_t *philo_thread)
+void	pthread_join_func(unsigned int num, t_cond *c, pthread_t *p_t)
 {
 	unsigned int	i;
 	int				check;
 
 	i = 0;
-	while (i < cond->num_of_philo)
+	while (i < num)
 	{
-		check = pthread_join(philo_thread[i], NULL);
+		check = pthread_join(p_t[i], NULL);
 		if (check != 0)
 		{
 			printf("pthread_join error\n");
-			cond->fin_flag = 1;
+			c->fin_flag = 1;
+			c->return_value = 1;
 			return ;
 		}
 		i++;
