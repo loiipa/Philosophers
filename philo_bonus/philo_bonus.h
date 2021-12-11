@@ -6,19 +6,18 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 18:23:12 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 21:28:22 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
-# define USLEEP_TIME 50
+# define USLEEP_TIME 100
 
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
 # include <semaphore.h>
@@ -66,7 +65,6 @@ int			print_return(char *s, int i);
 int			malloc_func(t_philo **p, pid_t **pid, int num);
 void		free_func(t_philo **p, pid_t **pid);
 void		usleep_func(t_philo *philo, long long ms_time);
-
 void		process_init(t_cond *c, t_philo *p, pid_t *pid);
 int			init_t_sema(unsigned int num, t_sema *sema);
 void		t_sema_destory_func(t_sema *sema);

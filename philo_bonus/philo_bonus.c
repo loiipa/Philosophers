@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:20:15 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 19:14:05 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 21:28:35 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_monitor(t_cond *cond, pid_t *pid)
 	int				check;
 	pthread_t		eat_check;
 
-	usleep(10000);
+	usleep(1000);
 	check = pthread_create(&eat_check, NULL, ft_eat_monitor, (void *)cond);
 	if (check != 0)
 	{
@@ -54,8 +54,8 @@ static void	ft_monitor(t_cond *cond, pid_t *pid)
 	}
 	sem_wait(cond->died_sem);
 	i = 0;
-	while (i++ <= cond->num_of_philo)
-		kill(pid[i], SIGINT);
+	while (i < cond->num_of_philo)
+		kill(pid[i++], SIGINT);
 	i = 0;
 	while (i++ <= cond->num_of_philo)
 		sem_post(cond->eat_sem);

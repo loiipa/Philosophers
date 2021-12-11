@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 18:39:50 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 21:11:52 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	eat_algorithm(t_philo *philo)
 	num = philo->cond->num_of_philo;
 	if (num == 1)
 		;
+	else if (index > num / 2)
+		usleep(10000);
 }
 
 static void	time_print(t_philo *philo, char *message, long long ms_time)
