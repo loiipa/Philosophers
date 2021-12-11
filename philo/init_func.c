@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:22:55 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/08 17:28:34 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 14:48:37 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_t_cond(t_cond *cond, int argc, char **argv)
 	else
 		cond->limit_num_of_eat = -1;
 	cond->fin_flag = 0;
+	cond->return_value = 0;
 	cond->philo_eat_fin_count = 0;
 	gettimeofday(&cond->start_time, NULL);
 }
