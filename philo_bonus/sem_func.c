@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:08:11 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 18:22:02 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/15 13:53:00 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ static int	sem_open_func(unsigned int num, sem_t **sem, char *s)
 
 static int	sem_destroy_func(sem_t *sem, char *s)
 {
-	sem_unlink(s);
-	sem_close(sem);
+	int		check;
+
+	check = sem_unlink(s);
+	if (check != 0)
+		printf("sem_unlink error\n");
+	check = sem_close(sem);
+	if (check != 0)
+		printf("sem_close error\n");
 	return (1);
 }
 
