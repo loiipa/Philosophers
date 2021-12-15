@@ -6,11 +6,11 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:37:31 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 19:09:56 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/11 19:41:40 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static void	died_check(t_philo *philo, struct timeval *middle_check)
 {
@@ -23,9 +23,10 @@ static void	died_check(t_philo *philo, struct timeval *middle_check)
 		if (philo->cond->fin_flag == 0)
 		{
 			philo->cond->fin_flag = 1;
-			pthread_mutex_lock(&philo->cond->print_mutex);
+			sem_wait(philo->cond->print_sem);
 			printf("%d %d died\n", time_check, philo->index);
-			pthread_mutex_unlock(&philo->cond->print_mutex);
+			sem_post(philo->cond->died_sem);
+			// sem_post(philo->cond->print_sem);
 		}
 	}
 }
