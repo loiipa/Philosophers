@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 21:28:00 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/18 14:34:21 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_cond
 	unsigned int		time_to_die;
 	unsigned int		time_to_eat;
 	unsigned int		time_to_sleep;
-	int					limit_num_of_eat;
+	unsigned int		limit_num_of_eat;
 	int					fin_flag;
 	int					return_value;
 	unsigned int		pthread_success;
@@ -44,7 +44,7 @@ typedef struct s_philo
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
 	t_cond				*cond;
-	struct timeval		sleep_time;
+	struct timeval		eat_time;
 }t_philo;
 
 int			ft_atoi(const char *str);
