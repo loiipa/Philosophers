@@ -6,51 +6,22 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/18 14:38:24 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/18 16:03:11 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	eat_algorithm(t_philo *philo)
-{
-	unsigned int	index;
-	unsigned int	num;
-	unsigned int	wait_time;
-
-	index = philo->index;
-	num = philo->cond->num_of_philo;
-	if (num == 1)
-		return ;
-	if (philo->cond->time_to_die < philo->cond->time_to_eat + 10)
-		wait_time = 0;
-	else
-		wait_time = philo->cond->time_to_die - philo->cond->time_to_eat - 10;
-	if (philo->cond->time_to_sleep < wait_time)
-		wait_time = philo->cond->time_to_sleep;
-	usleep_func(philo, wait_time);
-	if (index % 2 == 0)
-		usleep(10000);
-	else if (num % 2 == 1 && index == num)
-		usleep(10000);
-	// if (num == 1)
-	// 	;
-	// else if (index % 2 == 0)
-	// 	usleep(10000);
-	// else if (num % 2 == 1 && index == num)
-	// 	usleep(10000);
-}
 
 static void	time_print(t_philo *philo, char *message, long long ms_time)
 {
 	struct timeval	middle_check;
 	unsigned int	time_check;
 
-	gettimeofday(&middle_check, NULL);
-	time_check = (int)time_diff(&philo->cond->start_time, &middle_check);
 	if (philo->cond->fin_flag == 1)
 		return ;
 	pthread_mutex_lock(&philo->cond->print_mutex);
+	gettimeofday(&middle_check, NULL);
+	time_check = (int)time_diff(&philo->cond->start_time, &middle_check);
 	printf("%d %d %s\n", time_check, philo->index, message);
 	pthread_mutex_unlock(&philo->cond->print_mutex);
 	if (ms_time > 0)
@@ -80,7 +51,7 @@ void	*ft_philo_thread(void *p)
 	t_philo			*philo;
 
 	philo = (t_philo *)p;
-	eat_algorithm(philo);
+	eat_algorithm(philo[0].cond, philo);
 	while (philo->cond->fin_flag == 0)
 	{
 		pthread_mutex_lock(philo->l_fork);

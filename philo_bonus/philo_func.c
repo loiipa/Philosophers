@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 21:11:52 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/16 22:53:48 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	sleep_func(t_philo *philo)
 
 	gettimeofday(&middle_check, NULL);
 	time_check = (int)time_diff(&philo->cond->start_time, &middle_check);
-	philo->sleep_time = middle_check;
+	philo->eat_time = middle_check;
 	if (philo->cond->fin_flag == 1)
 		return ;
 	sem_wait(philo->cond->print_sem);
@@ -64,7 +64,7 @@ static void	eat_count_func(t_philo *philo)
 	sem_post(philo->fork);
 	sem_post(philo->fork);
 	gettimeofday(&middle_check, NULL);
-	philo->sleep_time = middle_check;
+	philo->eat_time = middle_check;
 	sem_post(philo->cond->eat_sem);
 	return ;
 }

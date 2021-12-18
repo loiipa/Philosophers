@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 15:37:31 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 19:41:40 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/16 22:55:03 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	died_check(t_philo *philo, struct timeval *middle_check)
 {
 	unsigned int	time_check;
 
-	time_check = (int)time_diff(&philo->sleep_time, middle_check);
+	time_check = (int)time_diff(&philo->eat_time, middle_check);
 	if (time_check >= philo->cond->time_to_die)
 	{
 		time_check = (int)time_diff(&philo->cond->start_time, middle_check);
