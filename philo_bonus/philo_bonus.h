@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 21:28:22 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/16 22:55:03 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_philo
 	int					fin_flag;
 	sem_t				*fork;
 	t_cond				*cond;
-	struct timeval		sleep_time;
+	struct timeval		eat_time;
 }t_philo;
 
 int			ft_atoi(const char *str);
