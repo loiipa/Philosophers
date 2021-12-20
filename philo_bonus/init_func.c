@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:22:55 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/16 22:53:48 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/20 15:02:31 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_t_cond(t_cond *cond, t_sema *sema, int argc, char **argv)
 	if (argc == 6)
 		cond->limit_num_of_eat = ft_atoi(argv[5]);
 	else
-		cond->limit_num_of_eat = -1;
+		cond->limit_num_of_eat = 0;
 	cond->fin_flag = 0;
 	cond->died_sem = sema->died_sem;
 	cond->eat_sem = sema->eat_sem;

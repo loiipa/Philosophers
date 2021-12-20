@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:08:11 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/15 13:53:00 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/20 15:24:21 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ void	t_sema_destory_func(t_sema *sema)
 	sem_destroy_func(sema->eat_sem, "eat");
 	sem_destroy_func(sema->fork, "fork");
 	sem_destroy_func(sema->print, "print");
+}
+
+void	sem_post_func(sem_t *sem)
+{
+	sem_post(sem);
+	return ;
 }
