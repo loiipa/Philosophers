@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 15:36:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/20 14:57:06 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/21 18:49:31 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static unsigned int	ft_wait_time(t_cond *c, unsigned int num)
 {
 	unsigned int	wait_time;
+	unsigned int	time_check;
+	struct timeval	cur_time;
 
 	if (num % 2 == 0)
 	{
@@ -30,7 +32,12 @@ static unsigned int	ft_wait_time(t_cond *c, unsigned int num)
 		else
 			wait_time = c->time_to_die - c->time_to_eat * 2 - 10;
 	}
-	return (wait_time);
+	gettimeofday(&cur_time, NULL);
+	time_check = (int)time_diff(&c->start_time, &cur_time);
+	if (wait_time < time_check)
+		return (0);
+	else
+		return (wait_time - time_check);
 }
 
 void	eat_algorithm(t_cond *c, t_philo *p)
