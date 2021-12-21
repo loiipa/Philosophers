@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/20 15:24:46 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/21 18:52:48 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_cond
 	sem_t				*print_sem;
 	int					fin_flag;
 	int					return_value;
+	unsigned int		pthread_success;
 	struct timeval		start_time;
 }t_cond;
 

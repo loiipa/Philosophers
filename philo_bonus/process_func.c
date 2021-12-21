@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:21:27 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/20 15:36:08 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/21 18:56:39 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*ft_died_monitor(void *p)
 			time_check = (int)time_diff(&philo->cond->start_time, &cur_time);
 			printf("%d %d died\n", time_check, philo->index);
 			sem_post(philo->cond->died_sem);
-			sem_post(philo->cond->print_sem);
+			// sem_post(philo->cond->print_sem);
 		}
 	}
 	return (NULL);
@@ -52,10 +52,25 @@ void	process_init(t_cond *c, t_philo *p, pid_t *pid)
 			sem_wait(c->died_sem);
 			sem_wait(c->eat_sem);
 			check = pthread_create(&died_check, NULL, ft_died_monitor, (void *)&p[i]);
+			if (check != 0)
+			{
+				printf("pthread_create error\n");
+				c->fin_flag = 1;
+				c->return_value = 1;
+				c->pthread_success = i;
+				return ;
+			}
 			ft_philo_process(&p[i]);
 			check = pthread_join(died_check, NULL);
+			if (check != 0)
+			{
+				printf("pthread_join error\n");
+				c->fin_flag = 1;
+				c->return_value = 1;
+			}
 			exit(0);
 		}
 		i++;
 	}
+	c->pthread_success = i;
 }
