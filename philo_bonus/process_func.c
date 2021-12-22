@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:21:27 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/22 09:17:48 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 09:45:17 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	*ft_d_monitor(void *p)
 		{
 			philo->cond->fin_flag = 1;
 			sem_wait(philo->cond->print_sem);
+			gettimeofday(&cur_time, NULL);
 			time_check = (int)time_diff(&philo->cond->start_time, &cur_time);
 			printf("%d %d died\n", time_check, philo->index);
 			sem_post(philo->cond->died_sem);
@@ -36,7 +37,7 @@ static void	*ft_d_monitor(void *p)
 	return (NULL);
 }
 
-static void	pthread_create_error(t_cond *c)
+static void	pthread_create_error(t_cond *c, int i)
 {
 	printf("pthread_create error\n");
 	c->fin_flag = 1;
@@ -68,7 +69,7 @@ void	process_init(t_cond *c, t_philo *p, pid_t *pid)
 			sem_wait(c->eat_sem);
 			check = pthread_create(&d_check, NULL, ft_d_monitor, (void *)&p[i]);
 			if (check != 0)
-				return (pthread_create_error(c));
+				return (pthread_create_error(c, i));
 			ft_philo_process(&p[i]);
 			check = pthread_join(d_check, NULL);
 			if (check != 0)
