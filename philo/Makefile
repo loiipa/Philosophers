@@ -6,7 +6,7 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/10 13:57:58 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/18 15:41:49 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS =	philo.c \
 		free_func.c \
 		pthread_func.c \
 		mutex_func.c \
+		eat_algorithm.c
 
 OBJS = $(SRCS:.c=.o)
 
