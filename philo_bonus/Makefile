@@ -6,7 +6,7 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/11 19:28:59 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/20 15:07:15 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS =	philo_bonus.c \
 		free_func.c \
 		sem_func.c \
 		process_func.c \
+		eat_algorithm.c \
 
 OBJS = $(SRCS:.c=.o)
 
