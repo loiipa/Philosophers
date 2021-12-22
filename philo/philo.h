@@ -6,14 +6,14 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/18 15:59:29 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:51:52 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# define USLEEP_TIME 200
+# define USLEEP_TIME 100
 
 # include <unistd.h>
 # include <stdio.h>
@@ -40,7 +40,7 @@ typedef struct s_philo
 {
 	unsigned int		index;
 	unsigned int		eat_conut;
-	int					fin_flag;
+	int					eat_fin_flag;
 	pthread_mutex_t		*l_fork;
 	pthread_mutex_t		*r_fork;
 	t_cond				*cond;

@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:22:55 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/18 14:03:08 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:50:09 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork)
 		philo[i].eat_conut = 0;
 		philo[i].cond = cond;
 		philo[i].eat_time = cond->start_time;
+		philo[i].eat_fin_flag = 0;
 		i++;
 	}
 }

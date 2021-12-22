@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/18 16:03:11 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:50:23 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	*eat_count_func(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 	philo->cond->philo_eat_fin_count++;
+	philo->eat_fin_flag = 1;
 	return (NULL);
 }
 

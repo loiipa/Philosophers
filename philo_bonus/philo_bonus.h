@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/21 18:52:48 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:55:37 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_philo
 {
 	unsigned int		index;
 	unsigned int		eat_conut;
-	int					fin_flag;
 	sem_t				*fork;
 	t_cond				*cond;
 	struct timeval		eat_time;

@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/20 15:26:01 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:56:22 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	eat_count_func(t_philo *philo)
 	sem_post(philo->fork);
 	sem_post(philo->fork);
 	sem_post(philo->cond->eat_sem);
+	philo->cond->fin_flag = 1;
 	return ;
 }
 

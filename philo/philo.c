@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:20:15 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/18 16:02:38 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:51:02 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_monitor(t_cond *cond, t_philo *philo)
 		{
 			gettimeofday(&cur_time, NULL);
 			time_check = (int)time_diff(&philo[i].eat_time, &cur_time);
-			if (time_check >= cond->time_to_die)
+			if (philo->eat_fin_flag == 0 && time_check >= cond->time_to_die)
 			{
 				cond->fin_flag = 1;
 				pthread_mutex_lock(&cond->print_mutex);
