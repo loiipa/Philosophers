@@ -6,14 +6,14 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/22 08:51:52 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/24 23:24:32 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# define USLEEP_TIME 100
+# define USLEEP_TIME 200
 
 # include <unistd.h>
 # include <stdio.h>
@@ -69,7 +69,7 @@ void		*mutex_unlock(pthread_mutex_t *fork);
 void		pthread_create_func(t_cond *c, t_philo *p, pthread_t *p_t);
 void		pthread_join_func(unsigned int num, t_cond *c, pthread_t *p_t);
 
-void		usleep_func(t_philo *philo, long long ms_time);
+void		usleep_func(t_philo *philo, long long ms_time, struct timeval st_time);
 
 void		eat_algorithm(t_cond *c, t_philo *p);
 #endif

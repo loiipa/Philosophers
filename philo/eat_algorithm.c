@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 15:36:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/18 15:43:44 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/24 23:29:30 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	eat_algorithm(t_cond *c, t_philo *p)
 		wait_time = ft_wait_time(c, num);
 	if (c->time_to_sleep < wait_time)
 		wait_time = c->time_to_sleep;
-	usleep_func(p, wait_time);
+	usleep_func(p, wait_time, p->eat_time);
 	if (index % 2 == 0)
 		usleep(10000);
 	else if (num % 2 == 1 && index == num)
