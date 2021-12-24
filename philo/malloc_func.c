@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:34:34 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/08 16:39:05 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/25 00:56:31 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,11 @@ int	malloc_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f, int num)
 		return (1);
 	}
 	return (0);
+}
+
+void	free_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f)
+{
+	free(*p);
+	free(*p_t);
+	free(*f);
 }
