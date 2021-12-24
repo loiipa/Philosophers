@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:20:15 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/24 22:49:14 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/25 01:02:28 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,26 @@ static int	argv_check(int argc, char **argv)
 	return (0);
 }
 
-static void	died_func(t_cond *cond, t_philo *philo, int i)
+static int	print_return(char *s, int i)
 {
-	unsigned int	time_check;
-	struct timeval	cur_time;
+	printf("%s\n", s);
+	return (i);
+}
 
-	cond->fin_flag = 1;
-	pthread_mutex_lock(&cond->print_mutex);
-	gettimeofday(&cur_time, NULL);
-	time_check = (int)time_diff(&cond->start_time, &cur_time);
-	printf("%d %d died\n", time_check, philo[i].index);
-	pthread_mutex_unlock(&cond->print_mutex);
+static void	died_func(t_cond *c, t_philo *p, struct timeval *cur_time)
+{
+	long long		time_check;
+
+	pthread_mutex_lock(&c->print_mutex);
+	time_check = time_diff(&c->start_time, cur_time);
+	printf("%lld %d died\n", time_check, p->index);
+	pthread_mutex_unlock(&c->print_mutex);
 }
 
 static void	ft_monitor(t_cond *cond, t_philo *philo)
 {
 	unsigned int	i;
-	unsigned int	time_check;
+	long long		time_check;
 	struct timeval	cur_time;
 
 	while (cond->fin_flag == 0)
@@ -49,9 +52,12 @@ static void	ft_monitor(t_cond *cond, t_philo *philo)
 		while (cond->fin_flag == 0 && i < cond->num_of_philo)
 		{
 			gettimeofday(&cur_time, NULL);
-			time_check = (int)time_diff(&philo[i].eat_time, &cur_time);
+			time_check = time_diff(&philo[i].eat_time, &cur_time);
 			if (philo->eat_fin_flag == 0 && time_check >= cond->time_to_die)
-				died_func(cond, philo, i);
+			{
+				cond->fin_flag = 1;
+				died_func(cond, &philo[i], &cur_time);
+			}
 			i++;
 		}
 		if (cond->philo_eat_fin_count == cond->num_of_philo)

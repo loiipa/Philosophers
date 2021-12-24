@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:21:08 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/24 23:24:32 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/25 01:04:16 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,10 @@ typedef struct s_philo
 	struct timeval		eat_time;
 }t_philo;
 
-int			ft_atoi(const char *str);
-
-long long	time_diff(struct timeval *start, struct timeval *end);
-
 void		init_t_cond(t_cond *cond, int argc, char **argv);
 void		init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork);
 
 void		*ft_philo_thread(void *num);
-
-int			print_return(char *s, int i);
 
 int			malloc_func(t_philo **p, pthread_t **p_t, pthread_mutex_t **f, \
 			int num);
@@ -69,7 +63,8 @@ void		*mutex_unlock(pthread_mutex_t *fork);
 void		pthread_create_func(t_cond *c, t_philo *p, pthread_t *p_t);
 void		pthread_join_func(unsigned int num, t_cond *c, pthread_t *p_t);
 
-void		usleep_func(t_philo *philo, long long ms_time, struct timeval st_time);
-
-void		eat_algorithm(t_cond *c, t_philo *p);
+int			ft_atoi(const char *str);
+long long	time_diff(struct timeval *start, struct timeval *end);
+void		usleep_func(t_philo *philo, long long ms_time, \
+			struct timeval st_time);
 #endif
