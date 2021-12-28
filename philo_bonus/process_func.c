@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:21:27 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/28 17:22:23 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/28 18:04:29 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	*ft_d_monitor(void *p)
 			printf("%lld %d died\n", time_check, philo->index);
 			sem_post(philo->cond->died_sem);
 		}
-		else if (time_check + 4 < philo->cond->time_to_die)
-			usleep((philo->cond->time_to_die - time_check) * 900);
 		else
 			usleep(USLEEP_TIME);
 	}
