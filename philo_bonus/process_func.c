@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:21:27 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/28 15:22:52 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/28 17:22:23 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ static void	*ft_d_monitor(void *p)
 		if (time_check >= philo->cond->time_to_die)
 		{
 			philo->cond->fin_flag = 1;
-			sem_wait(philo->cond->print_sem);
-			gettimeofday(&cur_time, NULL);
 			time_check = time_diff(&philo->cond->start_time, &cur_time);
+			sem_wait(philo->cond->print_sem);
 			printf("%lld %d died\n", time_check, philo->index);
 			sem_post(philo->cond->died_sem);
 		}

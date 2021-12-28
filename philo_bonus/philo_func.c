@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:28:29 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/28 15:08:15 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/28 17:22:58 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,13 @@ static void	time_print(t_philo *philo, char *mes, long long ms_time, int flag)
 
 	if (philo->cond->fin_flag == 1)
 		return ;
-	sem_wait(philo->cond->print_sem);
 	gettimeofday(&cur_time, NULL);
-	time_check = (int)time_diff(&philo->cond->start_time, &cur_time);
+	time_check = time_diff(&philo->cond->start_time, &cur_time);
 	if (flag == 1)
 		philo->eat_time = cur_time;
 	if (philo->cond->fin_flag == 1)
-	{
-		sem_post(philo->cond->print_sem);
 		return ;
-	}
+	sem_wait(philo->cond->print_sem);
 	printf("%lld %d %s\n", time_check, philo->index, mes);
 	sem_post(philo->cond->print_sem);
 	if (ms_time > 0)
