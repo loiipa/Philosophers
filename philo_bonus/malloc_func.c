@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 14:34:34 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/20 15:20:28 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/28 14:59:11 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ int	malloc_func(t_philo **p, pid_t **pid, int num)
 		return (1);
 	}
 	return (0);
+}
+
+void	free_func(t_philo **p, pid_t **pid)
+{
+	free(*p);
+	free(*pid);
 }
