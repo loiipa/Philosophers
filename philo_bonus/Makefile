@@ -6,7 +6,7 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/20 15:07:15 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/28 15:01:22 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,11 @@ NAME = philo_bonus
 
 SRCS =	philo_bonus.c \
 		utils.c \
-		time_func.c \
 		init_func.c \
 		philo_func.c \
-		usleep_func.c \
 		malloc_func.c \
-		print_func.c \
-		free_func.c \
 		sem_func.c \
 		process_func.c \
-		eat_algorithm.c \
 
 OBJS = $(SRCS:.c=.o)
 
