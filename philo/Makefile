@@ -6,7 +6,7 @@
 #    By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/25 20:34:02 by cjang             #+#    #+#              #
-#    Updated: 2021/12/10 13:57:58 by cjang            ###   ########.fr        #
+#    Updated: 2021/12/25 01:04:11 by cjang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,9 @@ NAME = philo
 
 SRCS =	philo.c \
 		utils.c \
-		time_func.c \
 		init_func.c \
 		philo_func.c \
-		usleep_func.c \
 		malloc_func.c \
-		print_func.c \
-		free_func.c \
 		pthread_func.c \
 		mutex_func.c \
 

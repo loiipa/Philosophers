@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:20:15 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 21:28:35 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/28 15:00:25 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ static int	argv_check(int argc, char **argv)
 		if (ft_atoi(argv[i++]) <= 0)
 			return (1);
 	return (0);
+}
+
+static int	print_return(char *s, int i)
+{
+	printf("%s\n", s);
+	return (i);
 }
 
 static void	*ft_eat_monitor(void *p)

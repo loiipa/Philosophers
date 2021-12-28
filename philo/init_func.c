@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:22:55 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/11 14:48:37 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/22 08:50:09 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_t_cond(t_cond *cond, int argc, char **argv)
 	if (argc == 6)
 		cond->limit_num_of_eat = ft_atoi(argv[5]);
 	else
-		cond->limit_num_of_eat = -1;
+		cond->limit_num_of_eat = 0;
 	cond->fin_flag = 0;
 	cond->return_value = 0;
 	cond->philo_eat_fin_count = 0;
@@ -43,7 +43,8 @@ void	init_t_philo(t_cond *cond, t_philo *philo, pthread_mutex_t *fork)
 			philo[i].r_fork = &fork[(i + 1) % cond->num_of_philo];
 		philo[i].eat_conut = 0;
 		philo[i].cond = cond;
-		philo[i].sleep_time = cond->start_time;
+		philo[i].eat_time = cond->start_time;
+		philo[i].eat_fin_flag = 0;
 		i++;
 	}
 }
