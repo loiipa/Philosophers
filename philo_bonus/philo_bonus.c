@@ -6,7 +6,7 @@
 /*   By: cjang <cjang@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:20:15 by cjang             #+#    #+#             */
-/*   Updated: 2021/12/28 15:00:25 by cjang            ###   ########.fr       */
+/*   Updated: 2021/12/28 15:53:20 by cjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ int	main(int argc, char **argv)
 		return (print_return("sem_open failed\n", 1));
 	init_t_cond(&philo_cond, &sema, argc, argv);
 	if (malloc_func(&philo, &philo_process, philo_cond.num_of_philo) == 1)
+	{
+		t_sema_destory_func(&sema);
 		return (print_return("malloc fail\n", 1));
+	}
 	init_t_philo(&philo_cond, philo, &sema);
 	process_init(&philo_cond, philo, philo_process);
 	ft_monitor(&philo_cond, philo_process);
